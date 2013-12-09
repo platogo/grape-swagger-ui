@@ -14,24 +14,38 @@
         margin-left: auto;
         margin-right: auto;
       }
-    
+
     :javascript
-      $(function(){
-        $.ajaxPrefilter(function(o, options){
-          options.headers = { 'X-CSRF-Token': '#{form_authenticity_token.to_s}' }
-        });      
+      $(function() {
+        window.swaggerUi = new SwaggerUi({
+        url: "http://#{request.host}:#{request.port}/api/swagger_doc.json",
+        dom_id: "swagger-ui-container",
+        supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
+        onComplete: function(swaggerApi, swaggerUi){
+          if (console) {
+            console.log("Loaded SwaggerUI")
+          }
+          $('pre code').each(function(i, e) { hljs.highlightBlock(e) });
+        },
+        onFailure: function(data) {
+          if (console) {
+            console.log("Unable to Load SwaggerUI");
+            console.log(data);
+          }
+        },
+        docExpansion: "none"
       });
 
-      $(function () {
-        window.swaggerUi = new SwaggerUi({
-          discoveryUrl: "http://#{request.host}:#{request.port}/api/swagger_doc.json",
-          apiKey:"",
-          dom_id:"swagger-ui-container",
-          supportHeaderParams: false,
-          supportedSubmitMethods: ['get', 'post', 'put']
-        });
-        window.swaggerUi.load();
-      });
+      $('#input_apiKey').change(function() {
+        var key = $('#input_apiKey')[0].value;
+        console.log("key: " + key);
+        if (key && key.trim() != "") {
+          console.log("added key " + key);
+          window.authorizations.add("key", new ApiKeyAuthorization("api_key", key, "query"));
+        }
+      })
+      window.swaggerUi.load();
+    });
 
   %body
     #header
