@@ -7,9 +7,9 @@ module Swagger
         File.expand_path('../templates', __FILE__)
       end
 
-      def create_swagger_layout        
-        template 'swagger.html.haml', File.join('app', 'views', 'layouts', 'swagger.html.haml')
-      end        
+      def create_swagger_layout
+        template 'swagger.html.erb', File.join('app', 'views', 'layouts', 'swagger.html.erb')
+      end
     end
   end
 end

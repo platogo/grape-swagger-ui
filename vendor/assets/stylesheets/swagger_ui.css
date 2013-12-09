@@ -11,3 +11,10 @@
  *= require_self
  *= require_tree .
  */
+
+.swagger-ui-wrap {
+  max-width: 80%;
+  min-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}

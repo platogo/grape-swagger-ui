@@ -5,4 +5,4 @@ Example:
     rails generate swagger:layout
 
     This will create:
-        app/views/layouts/swagger.html.haml
+        app/views/layouts/swagger.html.erb
