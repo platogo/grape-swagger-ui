@@ -8,26 +8,7 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
+ *= require highlight.default
+ *= require screen
+ *= require platogo
  */
-
-.swagger-ui-wrap {
-  max-width: 80%;
-  min-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#header {
-  background-color: #333;
-}
-
-#header a#logo {
-  background-image: <%= image_url 'platogo-logo.png' %>;
-  background-size: 30px 30px;
-}
-
-.options {
-  display: none !important;
-}
